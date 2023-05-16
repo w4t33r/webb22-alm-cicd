@@ -1,0 +1,34 @@
+{
+  "name": "webb22_alm_cicd-a",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon bin/www",
+    "lint": "eslint ../webb22_alm_cicd-a",
+    "lint-fix": "eslint --fix ../webb22_alm_cicd-a",
+    "prepare": "husky install",
+    "test": "mocha --recursive"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test",
+      "pre-commit": "npm test"
+    }
+  }
+}
