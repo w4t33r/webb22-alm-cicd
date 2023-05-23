@@ -1,11 +1,11 @@
 {
-  "name": "webb22_alm_cicd-a",
+  "name": "webb22-alm-cicd",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "nodemon bin/www",
-    "lint": "eslint ../webb22_alm_cicd-a",
-    "lint-fix": "eslint --fix ../webb22_alm_cicd-a",
+    "lint": "eslint ../webb22-alm-cicd",
+    "lint-fix": "eslint --fix ../webb22-alm-cicd",
     "prepare": "husky install",
     "test": "mocha --recursive"
   },
@@ -15,7 +15,8 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "supertest": "^6.3.3"
   },
   "devDependencies": {
     "eslint": "^8.40.0",
