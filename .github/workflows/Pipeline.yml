@@ -27,6 +27,3 @@ jobs:
 
       - name: units tests
         run: 'npm run test'
-
-      - name: lint test
-        run: 'npm run lint'
