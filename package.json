@@ -7,8 +7,7 @@
     "lint": "eslint ../webb22-alm-cicd",
     "lint-fix": "eslint --fix ../webb22-alm-cicd",
     "prepare": "husky install",
-    "test": "nyc mocha --recursive",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc mocha --recursive"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

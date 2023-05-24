@@ -1,49 +1,40 @@
-name: Coveralls
-on: [push, pull_request]
-env:
-  CI: true
+on: ["push", "pull_request"]
+
+name: Test Coveralls Parallel
 
 jobs:
   test:
-    name: Node ${{ matrix.node }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-
+    runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
-        node: [18]
-        os: [ubuntu-latest, windows-latest]
-
+        test_number:
+          - 1
+          - 2
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@3
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@1
+      with:
+        node-version: '18.x'
 
-      - name: Set Node.js version
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
+    - name: npm install
+      run: npm ci
 
-      - name: clean install
-        run: npm ci
-
-      - name: run nyc
-        run: npm run test
-
-
-      - name: Coveralls
-        uses: coverallsapp/github-action@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          flag-name: ${{matrix.os}}-node-${{ matrix.node }}
-          parallel: true
-          after_success: npm run coverage
+    - name: Test ${{ matrix.test_number }}
+      run: make test-coverage-${{ matrix.test_number }}
+    - name: Coveralls Parallel
+      uses: coverallsapp/github-action@v2
+      with:
+        flag-name: run-${{ join(matrix.*, '-') }}
+        parallel: true
 
   finish:
     needs: test
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
-      - name: Coveralls Finished
-        uses: coverallsapp/github-action@main
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@v2
+      with:
+        parallel-finished: true
+        carryforward: "run-1,run-2"
