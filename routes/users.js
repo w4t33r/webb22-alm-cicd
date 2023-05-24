@@ -7,3 +7,11 @@ router.get('/', (req, res) => {
 });
 
 module.exports = router;
+
+
+router.get('/fields', (req, res) => {
+  res.json('TP, PS, DT, VK');
+});
+
+module.exports = router;
+
