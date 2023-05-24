@@ -1,9 +1,12 @@
 name: Pipeline
 
 on:
+  pull_request:
+    branches:
+      - 'main'
   push:
     branches:
-      - main
+      - 'main'
 
 jobs:
   echo_branch:
@@ -28,5 +31,5 @@ jobs:
       - name: units tests
         run: 'npm run test'
 
-      - name: lint
+      - name: lint test
         run: 'npm run lint'
