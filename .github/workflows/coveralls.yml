@@ -15,10 +15,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16.x
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: npm install, make test-coverage
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+
       run: |
         npm install
         npm run coverage
