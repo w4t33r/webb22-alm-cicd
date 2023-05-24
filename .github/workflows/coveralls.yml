@@ -27,7 +27,8 @@ jobs:
         run: npm ci
 
       - name: run nyc
-        run: npm run nyc
+        run: npm run test
+
 
       - name: Coveralls
         uses: coverallsapp/github-action@main
@@ -35,6 +36,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           flag-name: ${{matrix.os}}-node-${{ matrix.node }}
           parallel: true
+          after_success: npm run coverage
 
   finish:
     needs: test
