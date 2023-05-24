@@ -33,3 +33,6 @@ jobs:
 
       - name: lint test
         run: 'npm run lint'
+
+      - name: nyc test
+        run: 'npm run nyc'
