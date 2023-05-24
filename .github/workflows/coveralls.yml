@@ -26,8 +26,8 @@ jobs:
       - name: clean install
         run: npm ci
 
-      - name: Run Tests
-        run: npm run test
+      - name: run nyc
+        run: npm run nyc
 
       - name: Coveralls
         uses: coverallsapp/github-action@main
