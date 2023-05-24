@@ -17,9 +17,11 @@ jobs:
         node-version: 16.x
 
     - name: npm install, make test-coverage
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
       run: |
         npm install
-        npm run nyc
+        npm run coverage
 
     - name: Coveralls
       uses: coverallsapp/github-action@v2
