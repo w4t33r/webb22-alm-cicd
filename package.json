@@ -25,11 +25,5 @@
     "husky": "^8.0.0",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.7"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm test",
-      "pre-commit": "npm test"
-    }
   }
 }
