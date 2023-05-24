@@ -8,3 +8,4 @@ overrides: []
 parserOptions:
   ecmaVersion: latest
 rules: { "no-unused-vars": ["error", { argsIgnorePattern: "next" }] }
+
