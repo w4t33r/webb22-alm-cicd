@@ -1,15 +1,25 @@
-name: 'CI'
-on:
-  pull_request:
+on: ["push", "pull_request"]
+
+name: Test Coveralls
+
 jobs:
-  build-test:
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2         # checkout the repo
-      - run: npm ci                       # install packages
-      - run: npm run test                     # run tests (configured to use jest-junit reporter)
-      - uses: actions/upload-artifact@v2  # upload test results
-        if: success() || failure()        # run this step even if previous step failed
-        with:
-          name: test-results
-          path: jest-junit.xm
+
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+
+    - name: npm install, make test-coverage
+      run: |
+        npm install
+        make test-coverage
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
