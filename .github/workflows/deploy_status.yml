@@ -1,13 +1,34 @@
 name: devStatus
 on:
   push:
-    branches-ignore:
-      - main
 
 jobs:
-  fake-job:
+  deploy_test_server:
     runs-on: ubuntu-latest
-
+    if: ${{ github.ref != 'refs/heads/main' }}
     steps:
-      - name: echo branch
-        run: "echo now deploying branch: $GITHUB_REF_NAME to the test server"
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Installing Dependencies
+        run: 'npm i'
+
+      - name: Print Deploy Message
+        run: "echo now deploying branch: ${{ github.ref }} to the test server"
+
+  deploy_production:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Installs Dependencies
+        run: 'npm i'
+
+      - name: Print Deploy Message
+        run: "echo now deploying to ${{ github.ref }}"
