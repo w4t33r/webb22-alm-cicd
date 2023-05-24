@@ -8,7 +8,8 @@
     "lint-fix": "eslint --fix ../webb22-alm-cicd",
     "prepare": "husky install",
     "test": "mocha --recursive",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "nyc": "nyc npm run test",
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -29,5 +30,18 @@
     "nodemon": "^2.0.7",
     "nyc": "^15.1.0",
     "prettier": "2.8.8"
+  },
+    "nyc": {
+    "all": true,
+    "reporter": [
+      "text",
+      "html",
+      "teamcity"
+    ],
+    "exclude": [
+      "wdio.conf.js",
+      "coverage/**/*.js",
+      "test/**/*.js"
+    ]
   }
 }
