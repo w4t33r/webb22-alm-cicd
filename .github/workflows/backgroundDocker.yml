@@ -11,7 +11,7 @@ jobs:
       nginx:
         image: nginx:alpine
         ports:
-          - 8080:80
+          - 4040:3000
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -22,5 +22,8 @@ jobs:
           node-version: 18
       - run: npm ci
 
+      - name: curl
+        run: curl http://localhost:4040
+
       - name: docker-test
-        run: npm run docker-test
+        run: npm run test
