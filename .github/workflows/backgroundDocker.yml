@@ -1,0 +1,28 @@
+name: remote_container
+on: push
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  runner-job:
+    runs-on: ubuntu-latest
+    services:
+      nginx:
+        image: nginx:alpine
+        ports:
+          - '4040:3000'
+          - '443:443'
+          - '80:80'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm ci
+
+      - name: supertest
+        run: npm run test-remote

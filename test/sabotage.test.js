@@ -6,6 +6,6 @@ describe('GET /fakeRoute', function () {
     it('trying to get fakeRoute', function (done) {
         request(app)
             .get('/fakeRoute')
-            .expect(200, done);
+            .expect(404, done);
     });
 });
