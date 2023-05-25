@@ -8,7 +8,7 @@
     "lint-fix": "eslint --fix ../webb22-alm-cicd",
     "prepare": "husky install",
     "test": "nyc mocha --recursive",
-    "docker-test": "mocha ./test/docker.test.js"
+    "docker-test": "mocha test/docker/docker.test.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

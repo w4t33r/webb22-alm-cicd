@@ -11,9 +11,7 @@ jobs:
       nginx:
         image: nginx:alpine
         ports:
-          - '4040:3000'
-          - '443:443'
-          - '80:80'
+          - 4040:3000
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -21,7 +19,7 @@ jobs:
       - name: nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: 18
       - run: npm ci
 
       - name: docker-test
