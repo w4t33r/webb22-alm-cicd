@@ -11,7 +11,7 @@ jobs:
       nginx:
         image: nginx:alpine
         ports:
-          - 3000:3000
+          - 8080:80
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
