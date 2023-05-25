@@ -23,7 +23,7 @@ jobs:
       - run: npm ci
 
       - name: curl
-        run: curl http://localhost:4040
+        run: curl http://localhost:4040/users
 
       - name: docker-test
         run: npm run test
